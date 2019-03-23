@@ -17,25 +17,7 @@ import {
 import store from '../../stores'
 
 import {colors} from '../../constants'
-
-const Company = ({id, name})=>(
-  <TouchableOpacity
-    style={[styles.company, {borderColor: store.companyStore.selectedId === id ? colors.orange: colors.lightGray}]}
-  >
-    <View style={styles.companyBody} >
-      <Text> {name} </Text>
-    </View>
-    <View style={styles.companyButtons} >
-      <TouchableOpacity style={styles.companyButton}>
-        <FaPencilAlt size={16} />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.companyButton}>
-        <FaTrashAlt color={colors.red} size={16} />
-      </TouchableOpacity>
-    </View>
-  </TouchableOpacity>
-)
-
+import Card from '../../components/Card'
 
 class All extends React.Component{
   render(){
@@ -50,28 +32,14 @@ class All extends React.Component{
 
         <ScrollView >
           <View style={styles.companies}>
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={0} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
-            <Company name={'hdgshdsd'} id={1} />
+            <Card
+              isSelected={store.companyStore.selectedId === 1}
+              onDelete={()=>alert('Delete')}
+              onEdit={()=>alert('Edit')}
+              onPress={()=>alert('Press')}
+            >
+              <Text> Ddzdzd </Text>
+            </Card>
           </View>
         </ScrollView>
 
@@ -107,44 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 5,
-    justifyContent: 'center',
   },
-  company: {
-    alignItems: 'center',
-    width: 180,
-    borderWidth: 1,
-    height: 100,
-    margin: 3,
-    padding: 5,
-    backgroundColor: colors.lightGray,
-    justifyContent: 'space-between'
-
-  },
-  companyButtons:{
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    bottom: 0
-  },
-  companyButton:{
-    backgroundColor: 'white',
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.darkGray
-  },
-  companyBody: {
-    width: '100%',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems:'center',
-    marginBottom: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.darkGray
-  }
 })
 
 export default observer(All)
