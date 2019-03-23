@@ -73,10 +73,10 @@ const Menu = withRouter(({history, location}) =>  (
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={()=>history.push('/gestion')}
+        onPress={()=>history.push('/geofencing')}
         style={[styles.menuItem, {borderColor: location.pathname.includes('gestion') ? colors.orange: colors.lightGray}]} >
         <FaCubes size={32} />
-        <Text style={{fontWeight: location.pathname.includes('gestion') ? 'bold': ''}} >Gestions</Text>
+        <Text style={{fontWeight: location.pathname.includes('geofencing') ? 'bold': ''}} >Geofencing</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -194,7 +194,6 @@ const styles = StyleSheet.create({
     top: 48,
     left: 2,
     width: 316,
-    height: 220,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.gray,
