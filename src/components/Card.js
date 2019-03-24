@@ -1,19 +1,12 @@
-import React from 'react'
+import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity
-} from 'react-native-web'
-import {colors} from "../constants";
+import { StyleSheet, View, TouchableOpacity } from "react-native-web";
+import { colors } from "../constants";
 
-import {
-  FaPencilAlt,
-  FaTrashAlt
-} from 'react-icons/fa'
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
-const Card = ({children, onPress, onEdit, onDelete, isSelected}) => (
+const Card = ({ children, onPress, onEdit, onDelete, isSelected }) => (
   <TouchableOpacity
     onPress={onPress}
     style={[
@@ -21,65 +14,54 @@ const Card = ({children, onPress, onEdit, onDelete, isSelected}) => (
       {
         borderColor: isSelected ? colors.orange : colors.lightGray
       }
-    ]
-    }
+    ]}
   >
-    <View style={styles.body}>
-      {children}
-    </View>
+    <View style={styles.body}>{children}</View>
     <View style={styles.buttons}>
-      <TouchableOpacity
-        onPress={onEdit}
-        style={styles.button}>
-        <FaPencilAlt size={16}/>
+      <TouchableOpacity onPress={onEdit} style={styles.button}>
+        <FaPencilAlt size={16} />
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={onDelete}
-        style={styles.button}>
-        <FaTrashAlt color={colors.red} size={16}/>
+      <TouchableOpacity onPress={onDelete} style={styles.button}>
+        <FaTrashAlt color={colors.red} size={16} />
       </TouchableOpacity>
     </View>
   </TouchableOpacity>
-)
+);
 
 const styles = StyleSheet.create({
   card: {
-    alignItems: 'center',
-    width: 181,
+    alignItems: "center",
+    width: 182,
     borderWidth: 1,
     borderRadius: 5,
-    margin: 5,
-    padding: 5,
+    margin: 3,
     backgroundColor: colors.lightGray,
-    justifyContent: 'space-between'
+    justifyContent: "space-between"
   },
   buttons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    bottom: 0
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    bottom: 0,
+    paddingBottom: 3
   },
   button: {
-    backgroundColor: 'white',
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.darkGray
+    width: 24,
+    height: 24,
+    justifyContent: "center",
+    alignItems: "center"
   },
   body: {
-    width: '100%',
+    width: "100%",
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 10,
-    marginBottom: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 5,
+    marginBottom: 3,
     borderBottomWidth: 1,
-    borderBottomColor: colors.darkGray
+    borderBottomColor: colors.gray
   }
-})
+});
 
 Card.propTypes = {
   children: PropTypes.element.isRequired,
@@ -89,4 +71,4 @@ Card.propTypes = {
   isSelected: PropTypes.bool.isRequired
 };
 
-export default Card
+export default Card;
