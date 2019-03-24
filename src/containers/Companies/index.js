@@ -5,6 +5,7 @@ import Links from "../../components/Links";
 import Container from "../../components/Container";
 
 import All from "./All";
+import Add from "./Add";
 
 const links = [
   {
@@ -21,6 +22,7 @@ const Companies = () => (
   <Container title="Gestion des enterprises">
     <Links links={links} />
     <Route path="/companies" component={All} exact />
+    <Route path="/companies/add" component={Add} exact />
   </Container>
 );
 

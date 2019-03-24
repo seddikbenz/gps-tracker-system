@@ -27,14 +27,28 @@ import HandleClickOutside from '../../components/HandleClickOutside'
 const MenuProfile = withRouter(({history}) => (
   <HandleClickOutside handleClick={() => store.commonStore.showMenuProfile = !store.commonStore.showMenuProfile}>
     <View style={styles.menuProfile}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around',alignItems: 'center', height: 48, borderBottomWidth:1}} >
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderBottomWidth:1,
+        paddingBottom: 10
+        }}
+      >
         <FaUserAlt size={24}/>
         <View>
           <Text>seddik benzemame</Text>
           <Text>seddik.benz.dev@gmail.com</Text>
         </View>
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-around',alignItems: 'center', height: 48}}>
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        paddingBottom: 5,
+        paddingTop: 10
+        }}
+      >
         <TouchableOpacity
           onPress={()=>history.push('/settings')}
         >
@@ -181,7 +195,7 @@ const styles = StyleSheet.create({
     width: 32,
     height:32,
     borderRadius: 16,
-    backgroundColor: 'white',
+    backgroundColor: colors.gray,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft:10,
@@ -216,11 +230,11 @@ const styles = StyleSheet.create({
     borderColor: colors.lightGray
   },
   menuProfile:{
+    justifyContent: 'space-between',
     position: 'absolute',
     top: 48,
     right: 2,
     width: 250,
-    height: 100,
     backgroundColor: colors.gray,
     padding: 5,
     borderRadius: 5,
