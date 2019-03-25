@@ -1,20 +1,22 @@
-import React from 'react'
-import { observer } from 'mobx-react'
-import {
-  StyleSheet,
-  View,
-  Text
-} from 'react-native-web'
+import React from "react";
+import { observer } from "mobx-react";
+import { TextInput } from "react-native-web";
+import { globalStyles } from "../../constants";
+import Form from "../../components/Form";
 
-class Add extends React.Component{
-  render(){
-    return(
-      <View>
-        <Text>Add</Text>
-      </View>
-    )
+class Add extends React.Component {
+  render() {
+    return (
+      <Form
+        label="Sauvegarder pour créer une nouvel enterprise"
+        onSubmit={() => alert("saved")}
+      >
+        <Form.Item label="Nom de l'enterprise">
+          <TextInput placeholder="Nom" style={globalStyles.textInput} />
+        </Form.Item>
+      </Form>
+    );
   }
 }
 
-export default observer(Add)
-
+export default observer(Add);

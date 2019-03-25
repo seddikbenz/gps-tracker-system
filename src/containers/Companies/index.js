@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 
 import All from "./All";
 import Add from "./Add";
+import Edit from "./Edit";
 
 const links = [
   {
@@ -23,6 +24,7 @@ const Companies = () => (
     <Links links={links} />
     <Route path="/companies" component={All} exact />
     <Route path="/companies/add" component={Add} exact />
+    <Route path="/companies/edit" component={Edit} />
   </Container>
 );
 

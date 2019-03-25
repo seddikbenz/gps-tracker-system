@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native-web";
 
 import { colors } from "../constants";
 
-const Container = ({ title, children }) => (
+const Container = ({ children, title }) => (
   <View style={styles.container}>
     <View
       style={{

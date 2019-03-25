@@ -13,6 +13,7 @@ const Links = withRouter(({ history, location, links }) => {
       <View style={styles.links}>
         {links.map((link, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() => history.push(link.url)}
             style={[
               styles.link,

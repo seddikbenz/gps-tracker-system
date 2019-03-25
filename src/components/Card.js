@@ -31,7 +31,7 @@ const Card = ({ children, onPress, onEdit, onDelete, isSelected }) => (
 const styles = StyleSheet.create({
   card: {
     alignItems: "center",
-    width: 182,
+    width: 229,
     borderWidth: 1,
     borderRadius: 5,
     margin: 3,
