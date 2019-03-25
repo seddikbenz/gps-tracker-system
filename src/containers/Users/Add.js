@@ -11,22 +11,34 @@ class Add extends React.Component {
         label="Sauvegarder pour créer un nouvel utilisateur"
         onSubmit={() => alert("saved")}
       >
-        <Form.Item label="Enterprise">
-          <Picker style={globalStyles.textInput}>
+        <Form.Item required label="Enterprise">
+          <Picker style={globalStyles.pickerInput}>
             <Picker.Item label="selectioner" />
           </Picker>
         </Form.Item>
-        <Form.Item label="Nom de l'utilisateur">
+
+        <Form.Item required label="Nom de l'utilisateur">
           <TextInput placeholder="Nom" style={globalStyles.textInput} />
         </Form.Item>
-        <Form.Item label="Email de l'utilisateur">
+
+        <Form.Item required label="Email de l'utilisateur">
           <TextInput placeholder="Email" style={globalStyles.textInput} />
         </Form.Item>
-        <Form.Item label="Mot de pass">
+
+        <Form.Item label="N° Telephone">
+          <TextInput placeholder="Telephone" style={globalStyles.textInput} />
+        </Form.Item>
+
+        <Form.Item label="Post de travail">
+          <TextInput placeholder="Travail" style={globalStyles.textInput} />
+        </Form.Item>
+
+        <Form.Item required label="Mot de pass">
           <TextInput placeholder="Mot de pass" style={globalStyles.textInput} />
         </Form.Item>
-        <Form.Item label="Type d'utilisateur">
-          <Picker style={globalStyles.textInput}>
+
+        <Form.Item required label="Type d'utilisateur">
+          <Picker style={globalStyles.pickerInput}>
             <Picker.Item label="selectioner" />
             <Picker.Item label="Admin" />
             <Picker.Item label="Super User" />

@@ -8,10 +8,10 @@ class Add extends React.Component {
   render() {
     return (
       <Form
-        label="Sauvegarder pour créer une nouvel enterprise"
+        label="Sauvegarder pour créer une nouvele enterprise"
         onSubmit={() => alert("saved")}
       >
-        <Form.Item label="Nom de l'enterprise">
+        <Form.Item required label="Nom de l'enterprise">
           <TextInput placeholder="Nom" style={globalStyles.textInput} />
         </Form.Item>
       </Form>

@@ -10,9 +10,10 @@ import {
 } from "react-native-web";
 import { colors } from "../constants";
 
-const Item = ({ children, label }) => (
+const Item = ({ children, label, required }) => (
   <View style={styles.row}>
-    <Text style={styles.text}> {label} </Text>
+    <Text style={styles.text}> {label} {required && <Text style={[styles.text, {color: colors.red}]} >*</Text>}</Text>
+    
     {children}
   </View>
 );

@@ -18,6 +18,13 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 3
   },
+  pickerInput: {
+    paddingHorizontal: 10,
+    height: 32,
+    width: 320,
+    backgroundColor: "white",
+    borderRadius: 3
+  },
   container: {
     backgroundColor: colors.gray,
     flex: 1,

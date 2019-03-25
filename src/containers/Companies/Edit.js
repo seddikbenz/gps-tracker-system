@@ -12,7 +12,7 @@ class Edit extends React.Component {
         label="Sauvegarder pour modifier l'enterprise"
         onSubmit={() => alert("update")}
       >
-        <Form.Item label="Nom de l'enterprise">
+        <Form.Item required label="Nom de l'enterprise">
           <TextInput placeholder="Nom" style={globalStyles.textInput} />
         </Form.Item>
       </Form>
