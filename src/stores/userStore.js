@@ -18,6 +18,7 @@ class UserStore {
   }
   loadingUser = false;
   updatingUser = false;
+  selectedId = 0
   updatingUserErrors;
   user = {
     id: 0,
@@ -208,7 +209,7 @@ UserStore = decorate(UserStore, {
   loadingUser: observable,
   updatingUser: observable,
   updatingUserErrors: observable,
-  selectedIndex: observable,
+  selectedId: observable,
   user: observable,
   users: observable,
   loading: observable,

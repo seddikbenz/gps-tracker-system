@@ -15,7 +15,7 @@ class Add extends React.Component {
       email: "",
       tel: "",
       job: "",
-      role: "",
+      role: "user",
       password: "",
       passwordVerification: "",
       user_id: 0,
@@ -45,7 +45,7 @@ class Add extends React.Component {
     return (
       <Form
         label="Sauvegarder pour créer un nouvel utilisateur"
-        onSubmit={() => alert("savded")}
+        onSubmit={() => store.userStore.create()}
       >
         {
           store.userStore.currentUser.role === 'superadmin' &&
@@ -68,27 +68,68 @@ class Add extends React.Component {
 
 
         <Form.Item required label="Nom de l'utilisateur">
-          <TextInput placeholder="Nom" style={globalStyles.textInput} />
+          <TextInput
+            value={store.userStore.user.username}
+            onChangeText={text =>
+              store.userStore.user.username = text
+            }
+            placeholder="Nom"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
 
         <Form.Item required label="Email de l'utilisateur">
-          <TextInput placeholder="Email" style={globalStyles.textInput} />
+          <TextInput
+            value={store.userStore.user.email}
+            onChangeText={text =>
+              store.userStore.user.email = text
+            }
+            placeholder="Email"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
 
         <Form.Item label="N° Telephone">
-          <TextInput placeholder="Telephone" style={globalStyles.textInput} />
+          <TextInput
+            value={store.userStore.user.tel}
+            onChangeText={text =>
+              store.userStore.user.tel = text
+            }
+            placeholder="Telephone"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
 
         <Form.Item label="Post de travail">
-          <TextInput placeholder="Travail" style={globalStyles.textInput} />
+          <TextInput
+            value={store.userStore.user.job}
+            onChangeText={text =>
+              store.userStore.user.job = text
+            }
+            placeholder="Travail"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
 
         <Form.Item required label="Mot de pass">
-          <TextInput placeholder="Mot de pass" style={globalStyles.textInput} />
+          <TextInput
+            value={store.userStore.user.password}
+            onChangeText={text =>
+              store.userStore.user.password = text
+            }
+            placeholder="Mot de pass"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
 
         <Form.Item required label="Type d'utilisateur">
-          <Picker style={globalStyles.pickerInput}>
+          <Picker
+            value={store.userStore.user.role}
+            onValueChange={value =>
+              store.userStore.user.role = value
+            }
+            style={globalStyles.pickerInput}
+          >
             <Picker.Item value='admin' label="Admin" />
             <Picker.Item value='superuser' label="Sous admin" />
             <Picker.Item value='user' label="Utilisateur" />

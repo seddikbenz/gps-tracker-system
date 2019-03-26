@@ -155,7 +155,10 @@ class Header extends React.Component{
             store.commonStore.showMenu &&
             <Menu/>
           }
-          <Text style={styles.title}>Gps tracking system</Text>
+          <TouchableOpacity onPress={()=>this.props.history.push('/')} >
+            <Text style={styles.title}>React GPS</Text>
+          </TouchableOpacity>
+          
         </View>
         <View>
           <TouchableOpacity
@@ -247,4 +250,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default observer(Header)
+export default withRouter(observer(Header))
