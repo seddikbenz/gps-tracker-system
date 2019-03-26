@@ -1,40 +1,48 @@
 import React from "react";
+import { observer } from 'mobx-react'
 import {
-  View,
-  Text,
-  TextInput,
-  Button,
   StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  ActivityIndicator
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity
 } from "react-native-web";
 
-import { IoMdLogIn, IoMdSad } from "react-icons/io";
-const test = false;
+import Form from '../components/Form'
+import { colors, globalStyles } from '../constants'
+
+import store from '../stores'
+
 class Login extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.form}>
-          <Text style={styles.formTitle}>Connect to Geo-Flota</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Email"
-            type="email"
-          />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Password"
-            secureTextEntry
-            Type="Password"
-          />
-          <TouchableOpacity style={styles.buttonLogin}>
-            {test && <ActivityIndicator size="small" color="white" />}
-            {!test && <IoMdLogIn size={24} />}
-            <Text style={{ justifySelf: "center" }}>Login</Text>
-          </TouchableOpacity>
-          <Text style={styles.error}>Error </Text>
+
+      <View style={styles.rootContainer}>
+        <View style={styles.container}>
+          <Form.Item required label="Email de l'utilisateur">
+            <TextInput
+              value={store.authStore.values.email}
+              onChangeText={(text) => { store.authStore.setEmail(text) }}
+              placeholder="Email"
+              style={globalStyles.textInput}
+            />
+          </Form.Item>
+
+          <Form.Item required label="Mot de pass">
+            <TextInput
+              value={store.authStore.values.password}
+              onChangeText={(text) => { store.authStore.setPassword(text) }}
+              secureTextEntry
+              placeholder="Mot de pass"
+              style={globalStyles.textInput}
+            />
+          </Form.Item>
+          <View style={styles.controllers}>
+            <Text> Clicker OK pour entrer </Text>
+            <TouchableOpacity onPress={() => store.authStore.login()} style={styles.button}>
+              <Text style={styles.textButton}>OK</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -42,51 +50,43 @@ class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  rootContainer: {
+    backgroundColor: colors.lightGray,
+    width: 960,
     flex: 1,
+    alignItems: "center",
     justifyContent: "center",
-    alignItems: "center"
   },
-
-  right: {
-    flex: 1
+  container: {
+    backgroundColor: colors.gray,
+    alignSelf: "center",
+    width: 600,
+    padding: 10,
+    margin: 10,
+    borderRadius: 5
   },
-  form: {
-    padding: 30,
-    maxWidth: Dimensions.get("window").width / 2,
-    minWidth: 450,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 3
+  controllers: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: colors.lightGray
   },
-  formTitle: {
-    marginBottom: 20,
-    fontSize: 16,
+  textButton: {
+    color: "white",
     fontWeight: "bold"
   },
-  textInput: {
-    padding: 5,
-    paddingVertical: 7,
-    borderColor: "#ddd",
-    borderWidth: 1,
-    margin: 3,
-    borderRadius: 3
-  },
-  buttonLogin: {
-    flexDirection: "row",
-    margin: 3,
-    padding: 5,
-    justifyContent: "space-around",
+  button: {
+    backgroundColor: colors.blue,
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#1da1f2",
-    color: "white",
-    borderRadius: 3
+    paddingHorizontal: 16,
+    height: 32,
+    borderRadius: 16,
+    alignSelf: "flex-end"
   },
-  error: {
-    marginTop: 20,
-    color: "red",
-    fontSize: 16
-  }
-});
+})
 
-export default Login;
+
+export default observer(Login);

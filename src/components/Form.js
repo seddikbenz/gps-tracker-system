@@ -12,8 +12,7 @@ import { colors } from "../constants";
 
 const Item = ({ children, label, required }) => (
   <View style={styles.row}>
-    <Text style={styles.text}> {label} {required && <Text style={[styles.text, {color: colors.red}]} >*</Text>}</Text>
-    
+    <Text style={styles.text}> {label} {required && <Text style={[styles.text, { color: colors.red }]} >*</Text>}</Text>
     {children}
   </View>
 );
@@ -23,18 +22,19 @@ Item.propTypes = {
   label: PropTypes.string.isRequired
 };
 
-const Form = ({ children, onSubmit, label }) => (
+const Form = ({ children, onSubmit, label, onSubmitLabel }) => (
   <ScrollView>
     <View style={styles.container}>
       {children}
       <View style={styles.controllers}>
         <Text> {label} </Text>
         <TouchableOpacity onPress={onSubmit} style={styles.button}>
-          <Text style={styles.textButton}>Sauvegarder</Text>
+          <Text style={styles.textButton}> {onSubmitLabel ? onSubmitLabel : "Sauvegarder"} </Text>
         </TouchableOpacity>
       </View>
     </View>
   </ScrollView>
+
 );
 
 const styles = StyleSheet.create({
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.gray,
     alignSelf: "center",
     width: 600,
-    padding: 20,
+    padding: 10,
     margin: 10,
     borderRadius: 5
   },
@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
 Form.propTypes = {
   children: PropTypes.element.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
+  onSubmitLabel: PropTypes.string
 };
 
 Form.Item = Item;

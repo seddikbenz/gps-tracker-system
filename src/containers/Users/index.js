@@ -24,7 +24,7 @@ const Users = () => (
     <Links links={links} />
     <Route path="/users" component={All} exact />
     <Route path="/users/add" component={Add} exact />
-    <Route path="/users/edit" component={Edit} />
+    <Route path="/users/edit/:id" component={Edit} />
   </Container>
 );
 

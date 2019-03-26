@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
   ScrollView,
-  TouchableOpacity
+  ActivityIndicator
 } from "react-native-web";
 
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
@@ -17,7 +17,29 @@ import { globalStyles } from "../../constants";
 import Card from "../../components/Card";
 
 class All extends React.Component {
+  componentDidMount() {
+    store.companyStore.getAll()
+  }
+  delete(id) {
+    if (window.confirm('Do you delete this Company')) {
+      store.companyStore.delete(id)
+    }
+  }
   render() {
+    if (store.companyStore.loading) {
+      return (
+        <View style={[globalStyles.container, { justifyContent: "center" }]}>
+          <ActivityIndicator size={48} />
+        </View>
+      )
+    }
+    if (store.companyStore.companies.length === 0) {
+      return (
+        <View style={globalStyles.container}>
+          <Text>Il ya aucun enterprises</Text>
+        </View>
+      );
+    }
     return (
       <View style={globalStyles.container}>
         <View style={globalStyles.header}>
@@ -29,17 +51,21 @@ class All extends React.Component {
 
         <ScrollView>
           <View style={globalStyles.cards}>
-            <Card
-              isSelected={store.companyStore.selectedId === 1}
-              onDelete={() => alert("Delete")}
-              onEdit={() => this.props.history.push("/companies/edit/1")}
-              onPress={() => {
-                store.companyStore.selectedId = 1;
-              }}
-            >
-              <Text>1234567890123456789012</Text>
-              <Text> Ddzdzd </Text>
-            </Card>
+            {
+              store.companyStore.companies.map((company, index) => (
+                <Card
+                  key={index}
+                  isSelected={store.companyStore.selectedId === company.id}
+                  onDelete={() => this.delete(company.id)}
+                  onEdit={() => this.props.history.push("/companies/edit/" + company.id)}
+                  onPress={() => {
+                    store.companyStore.selectedId = company.id;
+                  }}
+                >
+                  <Text>{company.name}</Text>
+                </Card>
+              ))
+            }
           </View>
         </ScrollView>
       </View>

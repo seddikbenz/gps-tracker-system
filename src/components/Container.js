@@ -4,8 +4,8 @@ import { View, Text, StyleSheet } from "react-native-web";
 
 import { colors } from "../constants";
 
-const Container = ({ children, title }) => (
-  <View style={styles.container}>
+const Container = ({ children, title, style }) => (
+  <View style={[styles.container, style]}>
     <View
       style={{
         paddingHorizontal: 10,
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
 });
 
 Container.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  title: PropTypes.string,
+  children: PropTypes.element.isRequired,
+  //style: PropTypes.object
 };
 
 export default Container;

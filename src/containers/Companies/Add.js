@@ -4,15 +4,22 @@ import { TextInput } from "react-native-web";
 import { globalStyles } from "../../constants";
 import Form from "../../components/Form";
 
+import store from "../../stores";
+
 class Add extends React.Component {
   render() {
     return (
       <Form
         label="Sauvegarder pour créer une nouvele enterprise"
-        onSubmit={() => alert("saved")}
+        onSubmit={() => store.companyStore.create()}
       >
         <Form.Item required label="Nom de l'enterprise">
-          <TextInput placeholder="Nom" style={globalStyles.textInput} />
+          <TextInput
+            value={store.companyStore.company.name}
+            onChangeText={(text) => store.companyStore.company.name = text}
+            placeholder="Nom"
+            style={globalStyles.textInput}
+          />
         </Form.Item>
       </Form>
     );

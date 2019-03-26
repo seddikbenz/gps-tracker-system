@@ -37,8 +37,8 @@ const MenuProfile = withRouter(({history}) => (
       >
         <FaUserAlt size={24}/>
         <View>
-          <Text>seddik benzemame</Text>
-          <Text>seddik.benz.dev@gmail.com</Text>
+          <Text>{store.userStore.currentUser.username}</Text>
+          <Text>{store.userStore.currentUser.email}</Text>
         </View>
       </View>
       <View style={{
@@ -54,7 +54,9 @@ const MenuProfile = withRouter(({history}) => (
         >
           <Text>Paramètre</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => store.authStore.logout()}
+        >
           <Text>Déconnecte</Text>
         </TouchableOpacity>
       </View>
@@ -88,7 +90,7 @@ const Menu = withRouter(({history, location}) =>  (
 
       <TouchableOpacity
         onPress={()=>history.push('/geofencing')}
-        style={[styles.menuItem, {borderColor: location.pathname.includes('gestion') ? colors.orange: colors.lightGray}]} >
+        style={[styles.menuItem, {borderColor: location.pathname.includes('geofencing') ? colors.orange: colors.lightGray}]} >
         <FaCubes size={32} />
         <Text style={{fontWeight: location.pathname.includes('geofencing') ? 'bold': ''}} >Geofencing</Text>
       </TouchableOpacity>

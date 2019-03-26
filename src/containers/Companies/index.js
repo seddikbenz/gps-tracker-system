@@ -24,7 +24,7 @@ const Companies = () => (
     <Links links={links} />
     <Route path="/companies" component={All} exact />
     <Route path="/companies/add" component={Add} exact />
-    <Route path="/companies/edit" component={Edit} />
+    <Route path="/companies/edit/:id" component={Edit} />
   </Container>
 );
 
