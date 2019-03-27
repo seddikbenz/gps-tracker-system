@@ -2,7 +2,7 @@ import { observable, reaction, action, decorate } from "mobx";
 import agent from "../agent";
 import commonStore from "./commonStore";
 import carStore from './carStore'
-import { toast } from 'react-toastify';
+import toastStore from "./toastStore";
 
 class companyStore {
   selectedId = 0;
@@ -44,7 +44,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -69,7 +69,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -94,7 +94,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -110,7 +110,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          toast.success(data.message)
+          toastStore.success(data.message)
         })
       )
       .catch(error => {
@@ -118,7 +118,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -137,7 +137,7 @@ class companyStore {
         })
         .then(
           action(data => {
-            toast.success(data.message)
+            toastStore.success(data.message)
           })
         )
         .catch(error => {
@@ -145,7 +145,7 @@ class companyStore {
             error.response !== undefined
               ? error.response.data.message
               : error.message;
-          toast.error(body)
+          toastStore.error(body)
         })
         .finally(action(() => this.getAll()));
     }
@@ -159,7 +159,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          toast.success(data.message)
+          toastStore.success(data.message)
         })
       )
       .catch(error => {
@@ -167,7 +167,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {

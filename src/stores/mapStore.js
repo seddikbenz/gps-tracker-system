@@ -1,9 +1,9 @@
 import {observable, reaction, action, decorate} from "mobx";
 import agent from "../agent";
 import commonStore from "./commonStore";
-import {toast} from 'react-toastify';
 import React from "react";
 import store from "./index";
+import toastStore from "./toastStore";
 
 class mapStore {
   mapRef = React.createRef();
@@ -32,7 +32,7 @@ class mapStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -56,7 +56,7 @@ class mapStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {

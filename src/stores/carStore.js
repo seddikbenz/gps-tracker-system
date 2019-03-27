@@ -1,7 +1,7 @@
 import { observable, reaction, action, decorate } from "mobx";
 import agent from "../agent";
 import commonStore from "./commonStore";
-import { toast } from 'react-toastify';
+import toastStore from "./toastStore";
 
 class carStore {
   selectedIndex = 0;
@@ -123,7 +123,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toast.success(data.message)
+          toastStore.success(data.message)
         })
       )
       .catch(error => {
@@ -131,7 +131,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
@@ -149,7 +149,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toast.success(data.message)
+          toastStore.success(data.message)
         })
       )
       .catch(error => {
@@ -157,7 +157,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(action(() => this.getAll()));
   }
@@ -170,7 +170,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toast.success(data.message)
+          toastStore.success(data.message)
         })
       )
       .catch(error => {
@@ -178,7 +178,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toast.error(body)
+        toastStore.error(body)
       })
       .finally(
         action(() => {
