@@ -7,6 +7,13 @@ import Form from "../../components/Form";
 import store from "../../stores";
 
 class Add extends React.Component {
+  componentDidMount(){
+    store.companyStore.company = {
+      id: 0,
+      name: "",
+      logo: ""
+    }
+  }
   render() {
     return (
       <Form

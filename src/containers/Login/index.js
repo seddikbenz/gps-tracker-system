@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   logo: {
-    backgroundColor: colors.lightGray,
+    backgroundColor: colors.darkBlue,
     padding: 5,
     marginBottom: 20,
     paddingVertical: 20,

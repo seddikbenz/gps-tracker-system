@@ -6,7 +6,8 @@ export const colors = {
   darkGray: "gray",
   orange: "#FF9900",
   red: "#E91E63",
-  blue: "#2196F3"
+  blue: "#2196F3",
+  darkBlue: "#607d8b"
 };
 
 export const globalStyles = StyleSheet.create({
