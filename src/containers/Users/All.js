@@ -12,6 +12,11 @@ class All extends React.Component {
     store.userStore.getAll()
     store.userStore.selectedId = 0
   }
+  delete(id) {
+    if (window.confirm('Do you delete that User?')) {
+      store.userStore.delete(id)
+    }
+  }
   render() {
     if (store.userStore.loading) {
       return (
@@ -42,7 +47,7 @@ class All extends React.Component {
                 <Card
                   key={index}
                   isSelected={store.userStore.selectedId === user.id}
-                  onDelete={() => alert("Delete")}
+                  onDelete={() => this.delete(user.id)}
                   onEdit={() => this.props.history.push("/users/edit/" + user.id)}
                   onPress={() => {
                     store.userStore.selectedId = user.id;
