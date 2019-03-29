@@ -22,21 +22,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-      <style>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <style>
       /* These styles make the body full-height */
-        html,
-        body {
-          height: 100vh;
-        }
-        /* These styles disable body scrolling if you are using <ScrollView> */
-        body {
-          overflow: hidden;
-        }
-        /* These styles make the root element full-height */
-        #root {
-          display: flex;
-          height: 100vh;
-        }
+      html,
+      body {
+        height: 100vh;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100vh;
+      }
+      .leaflet-container {
+        height: 100%;
+        width: 100%;
+      }
     </style>
     <title>React App</title>
   </head>

@@ -75,7 +75,7 @@ const Menu = withRouter(({history, location}) =>  (
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={()=>history.push('/map')}
+        onPress={()=>history.push('/maps')}
         style={[styles.menuItem, {borderColor: location.pathname.includes('map') ? colors.orange: colors.lightGray}]} >
         <FaMapMarkedAlt size={32} />
         <Text style={{fontWeight: location.pathname.includes('map') ? 'bold': ''}}>Temps Réel</Text>
@@ -104,7 +104,6 @@ const Menu = withRouter(({history, location}) =>  (
           <Text style={{fontWeight: location.pathname.includes('companies') ? 'bold': ''}}>Entreprises</Text>
         </TouchableOpacity>
       }
-
 
       <TouchableOpacity
         onPress={()=>history.push('/users')}

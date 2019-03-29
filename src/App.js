@@ -15,10 +15,12 @@ import Companies from "./containers/Companies";
 import Users from "./containers/Users";
 import Cars from "./containers/Cars";
 import Trackers from "./containers/Trackers";
+import Maps from "./containers/Maps";
 import ToastContainer from "./containers/Toast";
 import { colors } from "./constants";
 
 import store from "./stores";
+
 window.store = store;
 class App extends React.Component {
   componentWillMount() {
@@ -49,6 +51,7 @@ class App extends React.Component {
           <Route path={"/users"} component={Users} />
           <Route path={"/cars"} component={Cars} />
           <Route path={"/trackers"} component={Trackers} />
+          <Route path={"/maps"} component={Maps} />
           <ToastContainer />
         </View>
       </BrowserRouter>
