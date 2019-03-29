@@ -11,11 +11,13 @@ import Edit from "./Edit";
 const links = [
   {
     name: "Tous les enterprises",
-    url: "/companies"
+    url: "/companies",
+    show: true
   },
   {
     name: "Ajouter une enterprise",
-    url: "/companies/add"
+    url: "/companies/add",
+    show: true
   }
 ];
 

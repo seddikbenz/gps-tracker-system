@@ -11,11 +11,13 @@ import Edit from "./Edit";
 const links = [
   {
     name: "Tous les utilisateur",
-    url: "/users"
+    url: "/users",
+    show: true
   },
   {
     name: "Ajouter un utilisateur",
-    url: "/users/add"
+    url: "/users/add",
+    show: true
   }
 ];
 

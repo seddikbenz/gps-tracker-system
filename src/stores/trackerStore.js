@@ -4,7 +4,7 @@ import commonStore from "./commonStore";
 import toastStore from "./toastStore";
 
 class trackerStore {
-  selectedIndex = 0;
+  selectedId = 0;
   tracker = {
     id: 0,
     code: "",
@@ -163,7 +163,7 @@ class trackerStore {
 }
 
 trackerStore = decorate(trackerStore, {
-  selectedIndex: observable,
+  selectedId: observable,
   tracker: observable,
   trackers: observable,
   loading: observable,

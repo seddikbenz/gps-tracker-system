@@ -95,12 +95,16 @@ const Menu = withRouter(({history, location}) =>  (
         <Text style={{fontWeight: location.pathname.includes('geofencing') ? 'bold': ''}} >Geofencing</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={()=>history.push('/companies')}
-        style={[styles.menuItem, {borderColor: location.pathname.includes('companies') ? colors.orange: colors.lightGray}]} >
-        <FaIndustry size={32} />
-        <Text style={{fontWeight: location.pathname.includes('companies') ? 'bold': ''}}>Entreprises</Text>
-      </TouchableOpacity>
+      {
+        store.userStore.currentUser.role === "superadmin" &&
+        <TouchableOpacity
+          onPress={()=>history.push('/companies')}
+          style={[styles.menuItem, {borderColor: location.pathname.includes('companies') ? colors.orange: colors.lightGray}]} >
+          <FaIndustry size={32} />
+          <Text style={{fontWeight: location.pathname.includes('companies') ? 'bold': ''}}>Entreprises</Text>
+        </TouchableOpacity>
+      }
+
 
       <TouchableOpacity
         onPress={()=>history.push('/users')}
@@ -123,12 +127,15 @@ const Menu = withRouter(({history, location}) =>  (
         <Text style={{fontWeight: location.pathname.includes('drivers') ? 'bold': ''}}>Conducteurs</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={()=>history.push('/trackers')}
-        style={[styles.menuItem, {borderColor: location.pathname.includes('trackers') ? colors.orange: colors.lightGray}]} >
-        <FaRocket size={32} />
-        <Text style={{fontWeight: location.pathname.includes('trackers') ? 'bold': ''}}>Traqueurs</Text>
-      </TouchableOpacity>
+      {
+        store.userStore.currentUser.role === "superadmin" &&
+        <TouchableOpacity
+          onPress={()=>history.push('/trackers')}
+          style={[styles.menuItem, {borderColor: location.pathname.includes('trackers') ? colors.orange: colors.lightGray}]} >
+          <FaRocket size={32} />
+          <Text style={{fontWeight: location.pathname.includes('trackers') ? 'bold': ''}}>Traqueurs</Text>
+        </TouchableOpacity>
+      }
     </View>
   </HandleClickOutside>
 ))

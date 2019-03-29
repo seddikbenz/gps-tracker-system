@@ -4,7 +4,7 @@ import commonStore from "./commonStore";
 import toastStore from "./toastStore";
 
 class carStore {
-  selectedIndex = 0;
+  selectedId = 0;
   car = {
     id: 0,
     numberplate: "",
@@ -190,7 +190,7 @@ class carStore {
 }
 
 carStore = decorate(carStore, {
-  selectedIndex: observable,
+  selectedId: observable,
   car: observable,
   cars: observable,
   loading: observable,

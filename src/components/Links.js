@@ -11,29 +11,33 @@ const Links = withRouter(({ history, location, links }) => {
   } else {
     return (
       <View style={styles.links}>
-        {links.map((link, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => history.push(link.url)}
-            style={[
-              styles.link,
-              {
-                borderColor:
-                  location.pathname === link.url
-                    ? colors.orange
-                    : colors.lightGray
-              }
-            ]}
-          >
-            <Text
-              style={{
-                fontWeight: location.pathname === link.url ? "bold" : ""
-              }}
-            >
-              {link.name}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {links.map((link, index) => {
+          if(link.show){
+            return (
+              <TouchableOpacity
+                key={index}
+                onPress={() => history.push(link.url)}
+                style={[
+                  styles.link,
+                  {
+                    borderColor:
+                      location.pathname === link.url
+                        ? colors.orange
+                        : colors.lightGray
+                  }
+                ]}
+              >
+                <Text
+                  style={{
+                    fontWeight: location.pathname === link.url ? "bold" : ""
+                  }}
+                >
+                  {link.name}
+                </Text>
+              </TouchableOpacity>
+            )
+          }
+        })}
       </View>
     );
   }

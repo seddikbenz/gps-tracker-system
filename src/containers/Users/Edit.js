@@ -14,6 +14,30 @@ class Add extends React.Component {
       store.companyStore.getAll()
     }
   }
+
+  renderUserRole() {
+    if (store.userStore.currentUser.role === 'admin' || store.userStore.currentUser.role === 'superadmin') {
+      return (
+        <Form.Item required label="Type d'utilisateur">
+          <Picker
+            value={store.userStore.user.role}
+            onValueChange={value =>
+              store.userStore.user.role = value
+            }
+            style={globalStyles.pickerInput}
+          >
+            {
+              store.userStore.currentUser.role === "superadmin" &&
+              <Picker.Item value='admin' label="Admin" />
+            }
+            <Picker.Item value='superuser' label="Sous admin" />
+            <Picker.Item value='user' label="Utilisateur" />
+          </Picker>
+        </Form.Item>
+      )
+    }
+  }
+
   render() {
     if (store.userStore.loading || store.companyStore.loading) {
       return (
@@ -108,20 +132,9 @@ class Add extends React.Component {
             style={globalStyles.textInput}
           />
         </Form.Item>
-
-        <Form.Item required label="Type d'utilisateur">
-          <Picker
-            value={store.userStore.user.role}
-            onValueChange={value =>
-              store.userStore.user.role = value
-            }
-            style={globalStyles.pickerInput}
-          >
-            <Picker.Item value='admin' label="Admin" />
-            <Picker.Item value='superuser' label="Sous admin" />
-            <Picker.Item value='user' label="Utilisateur" />
-          </Picker>
-        </Form.Item>
+        {
+          this.renderUserRole()
+        }
       </Form>
     );
   }

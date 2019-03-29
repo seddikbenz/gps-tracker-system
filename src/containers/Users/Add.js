@@ -9,24 +9,64 @@ import store from '../../stores'
 
 class Add extends React.Component {
   componentDidMount() {
-    store.userStore.user = {
-      id: 0,
-      username: "",
-      email: "",
-      tel: "",
-      job: "",
-      role: "user",
-      password: "",
-      passwordVerification: "",
-      user_id: 0,
-      company_id: 0,
-      created_at: "",
-      updated_at: ""
-    }
+
     if (store.userStore.currentUser.role === 'superadmin') {
       store.companyStore.getAll()
+      store.userStore.user = {
+        id: 0,
+        username: "",
+        email: "",
+        tel: "",
+        job: "",
+        role: "user",
+        password: "",
+        passwordVerification: "",
+        user_id: 0,
+        company_id: 0,
+        created_at: "",
+        updated_at: ""
+      }
+    } else{
+      store.userStore.user = {
+        id: 0,
+        username: "",
+        email: "",
+        tel: "",
+        job: "",
+        role: "user",
+        password: "",
+        passwordVerification: "",
+        user_id: 0,
+        company_id: store.userStore.currentUser.company_id,
+        created_at: "",
+        updated_at: ""
+      }
     }
   }
+
+  renderUserRole() {
+    if (store.userStore.currentUser.role === 'admin' || store.userStore.currentUser.role === 'superadmin') {
+      return (
+        <Form.Item required label="Type d'utilisateur">
+          <Picker
+            value={store.userStore.user.role}
+            onValueChange={value =>
+              store.userStore.user.role = value
+            }
+            style={globalStyles.pickerInput}
+          >
+            {
+              store.userStore.currentUser.role === "superadmin" &&
+              <Picker.Item value='admin' label="Admin" />
+            }
+            <Picker.Item value='superuser' label="Sous admin" />
+            <Picker.Item value='user' label="Utilisateur" />
+          </Picker>
+        </Form.Item>
+      )
+    }
+  }
+
   render() {
     if (store.userStore.loading || store.companyStore.loading) {
       return (
@@ -57,6 +97,7 @@ class Add extends React.Component {
               }
               style={globalStyles.pickerInput}
             >
+              <Picker.Item label={"selectionner"} value={0} />
               {
                 store.companyStore.companies.map((company, index) => (
                   <Picker.Item label={company.name} value={company.id} />
@@ -122,19 +163,9 @@ class Add extends React.Component {
           />
         </Form.Item>
 
-        <Form.Item required label="Type d'utilisateur">
-          <Picker
-            value={store.userStore.user.role}
-            onValueChange={value =>
-              store.userStore.user.role = value
-            }
-            style={globalStyles.pickerInput}
-          >
-            <Picker.Item value='admin' label="Admin" />
-            <Picker.Item value='superuser' label="Sous admin" />
-            <Picker.Item value='user' label="Utilisateur" />
-          </Picker>
-        </Form.Item>
+        {
+          this.renderUserRole()
+        }
       </Form>
     );
   }
