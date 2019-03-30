@@ -1,7 +1,7 @@
 import { observable, reaction, action, decorate } from "mobx";
 import agent from "../agent";
 import commonStore from "./commonStore";
-import carStore from './carStore'
+import carStore from "./carStore";
 import toastStore from "./toastStore";
 
 class companyStore {
@@ -18,15 +18,15 @@ class companyStore {
     body: "",
     show: false
   };
-  hideMessage(){
+  hideMessage() {
     this.message = {
-      type: '',
-      body: '',
+      type: "",
+      body: "",
       show: false
-    }
+    };
   }
-  showMessage(message){
-    this.message = message
+  showMessage(message) {
+    this.message = message;
   }
   getCompany(id) {
     this.loading = true;
@@ -36,7 +36,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          this.company = data.data
+          this.company = data.data;
         })
       )
       .catch(error => {
@@ -44,7 +44,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -61,7 +61,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          carStore.cars = data.data
+          carStore.cars = data.data;
         })
       )
       .catch(error => {
@@ -69,7 +69,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -94,7 +94,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -110,7 +110,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          toastStore.success(data.message)
+          toastStore.success(data.message);
         })
       )
       .catch(error => {
@@ -118,7 +118,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -137,7 +137,7 @@ class companyStore {
         })
         .then(
           action(data => {
-            toastStore.success(data.message)
+            toastStore.success(data.message);
           })
         )
         .catch(error => {
@@ -145,7 +145,7 @@ class companyStore {
             error.response !== undefined
               ? error.response.data.message
               : error.message;
-          toastStore.error(body)
+          toastStore.error(body);
         })
         .finally(action(() => this.getAll()));
     }
@@ -159,7 +159,7 @@ class companyStore {
       })
       .then(
         action(data => {
-          toastStore.success(data.message)
+          toastStore.success(data.message);
         })
       )
       .catch(error => {
@@ -167,7 +167,7 @@ class companyStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -183,7 +183,7 @@ companyStore = decorate(companyStore, {
   company: observable,
   companies: observable,
   loading: observable,
-  message: observable,
+  message: observable
 });
 
 export default new companyStore();
