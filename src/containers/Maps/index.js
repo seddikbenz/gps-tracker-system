@@ -1,68 +1,73 @@
-import React, { Component } from 'react';
-import {observer} from 'mobx-react'
-import {StyleSheet, View} from "react-native-web";
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { StyleSheet, View } from "react-native-web";
 
-import  {
-  Map,
-  LayersControl,
-  TileLayer,
-  Marker,
-  Popup
-} from 'react-leaflet'
-import {BlueMarker, GreenMarker, RedMarker, YellowMarker, GrayMarker} from '../../components/IconsMarker'
+import { Map, LayersControl, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  BlueMarker,
+  GreenMarker,
+  RedMarker,
+  YellowMarker,
+  GrayMarker
+} from "../../components/IconsMarker";
+import Menu from "./Menu";
+import store from "../../stores";
+import { colors } from "../../constants";
 
-import store from '../../stores'
-import {colors} from "../../constants";
+const osm = "http://{s}.tile.osm.org/{z}/{x}/{y}.png";
+const googleSatelite =
+  "http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga";
+const googleRoad =
+  "http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}";
 
-const osm = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-const googleSatelite = 'http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'
-const googleRoad = 'http://mt1.google.com/vt/lyrs=m@113&hl=en&&x={x}&y={y}&z={z}'
+const { BaseLayer, Overlay } = LayersControl;
 
-const { BaseLayer, Overlay } = LayersControl
-
-class Maps extends React.Component{
+class Maps extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      lat:36.08,
-      lng:4.76,
+      lat: 36.08,
+      lng: 4.76,
       zoom: 11
-    }
+    };
     this.updateCarsLastPositionIntervalID = 0;
   }
-  componentDidMount(){
-    store.mapStore.getCarsLastPosition()
-    this.updateCarsLastPositionIntervalID = setInterval(this.updateCarsLastPosition, 60000)
+  componentDidMount() {
+    store.mapStore.getCarsLastPosition();
+    this.updateCarsLastPositionIntervalID = setInterval(
+      this.updateCarsLastPosition,
+      60000
+    );
   }
 
-  componentWillUnmount(){
-    clearInterval(this.updateCarsLastPositionIntervalID)
+  componentWillUnmount() {
+    clearInterval(this.updateCarsLastPositionIntervalID);
   }
 
-  zoomOut(){
+  zoomOut() {
     const map = store.mapStore.mapRef.current;
     if (map != null) {
       map.leafletElement.zoomOut();
     }
-  };
-
-  updateCarsLastPosition(){
-    store.mapStore.updateCarsLastPosition()
   }
 
-  renderIconMarker(car){
-    if(store.mapStore.selectedIndex === car.id){
-      return GreenMarker
-    }
-    if(car.state === "on" && car.speed !== "0" ){
-      return GreenMarker
-    }
-    return BlueMarker
+  updateCarsLastPosition() {
+    store.mapStore.updateCarsLastPosition();
   }
 
-  render(){
+  renderIconMarker(car) {
+    if (store.mapStore.selectedId === car.id) {
+      return GreenMarker;
+    }
+    if (car.state === "on" && car.speed !== "0") {
+      return GreenMarker;
+    }
+    return BlueMarker;
+  }
+
+  render() {
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <Map
           animate={true}
           zoomControl={false}
@@ -70,7 +75,7 @@ class Maps extends React.Component{
           ref={store.mapStore.mapRef}
           center={store.mapStore.mapCenter}
           zoom={store.mapStore.mapZoom}
-          onClick={() => store.mapStore.showListCars = false}
+          onClick={() => (store.mapStore.showListCars = false)}
         >
           <LayersControl position="topright">
             <BaseLayer checked name="OpenStreetMap">
@@ -92,37 +97,36 @@ class Maps extends React.Component{
               />
             </BaseLayer>
           </LayersControl>
-          {
-            store.mapStore.cars.map((car, index) => {
-              if(car.positions.length !== 0){
-                return(
-                  <Marker
-                    onClick={()=>store.mapStore.selectedIndex = car.id}
-                    key={index}
-                    position={{
-                      lat: car.positions[0].lat,
-                      lng: car.positions[0].lng,
-                    }}
-                    icon={this.renderIconMarker(car)}
-                  >
-                    <Popup>
-                      <b>Numberplate:</b> {car.numberplate}
-                      <br/> <b>Code:</b> {car.code}
-                      <br/> <b>speed:</b> {car.speed ? car.speed : 0 }  km/h
-                      <b>, State:</b> {car.state ? car.state : 'off' }
-                      <br/> <b>Lat:</b> {car.positions[0].lat}
-                      <br/> <b>Lng:</b> {car.positions[0].lng}
-                      <br/> <b>created_at:</b> {car.positions[0].created_at}
-                      <br/> <b>updated_at:</b> {car.positions[0].updated_at}
-                    </Popup>
-                  </Marker>
-                )
-              }
-            })
-          }
+          {store.mapStore.cars.map((car, index) => {
+            if (car.positions.length !== 0) {
+              return (
+                <Marker
+                  onClick={() => (store.mapStore.selectedId = car.id)}
+                  key={index}
+                  position={{
+                    lat: car.positions[0].lat,
+                    lng: car.positions[0].lng
+                  }}
+                  icon={this.renderIconMarker(car)}
+                >
+                  <Popup>
+                    <b>Numberplate:</b> {car.numberplate}
+                    <br /> <b>Code:</b> {car.code}
+                    <br /> <b>speed:</b> {car.speed ? car.speed : 0} km/h
+                    <b>, State:</b> {car.state ? car.state : "off"}
+                    <br /> <b>Lat:</b> {car.positions[0].lat}
+                    <br /> <b>Lng:</b> {car.positions[0].lng}
+                    <br /> <b>created_at:</b> {car.positions[0].created_at}
+                    <br /> <b>updated_at:</b> {car.positions[0].updated_at}
+                  </Popup>
+                </Marker>
+              );
+            }
+          })}
         </Map>
+        <Menu />
       </View>
-    )
+    );
   }
 }
 
@@ -134,4 +138,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default observer(Maps)
+export default observer(Maps);

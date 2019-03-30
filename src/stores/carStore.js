@@ -19,15 +19,15 @@ class carStore {
     body: "",
     show: false
   };
-  hideMessage(){
+  hideMessage() {
     this.message = {
-      type: '',
-      body: '',
+      type: "",
+      body: "",
       show: false
-    }
+    };
   }
-  showMessage(message){
-    this.message = message
+  showMessage(message) {
+    this.message = message;
   }
   getCar(id) {
     this.loading = true;
@@ -37,7 +37,7 @@ class carStore {
       })
       .then(
         action(data => {
-          this.car = data.data
+          this.car = data.data;
         })
       )
       .catch(error => {
@@ -46,10 +46,10 @@ class carStore {
             ? error.response.data.message
             : error.message;
         this.showMessage({
-          type: 'error',
+          type: "error",
           body: body,
           show: true
-        })
+        });
       })
       .finally(
         action(() => {
@@ -66,7 +66,7 @@ class carStore {
       })
       .then(
         action(data => {
-          this.car = data.data
+          this.car = data.data;
         })
       )
       .catch(error => {
@@ -75,10 +75,10 @@ class carStore {
             ? error.response.data.message
             : error.message;
         this.showMessage({
-          type: 'error',
+          type: "error",
           body: body,
           show: true
-        })
+        });
       })
       .finally(
         action(() => {
@@ -104,10 +104,10 @@ class carStore {
             ? error.response.data.message
             : error.message;
         this.showMessage({
-          type: 'error',
+          type: "error",
           body: body,
           show: true
-        })
+        });
       })
       .finally(
         action(() => {
@@ -123,7 +123,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toastStore.success(data.message)
+          toastStore.success(data.message);
         })
       )
       .catch(error => {
@@ -131,7 +131,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -149,7 +149,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toastStore.success(data.message)
+          toastStore.success(data.message);
         })
       )
       .catch(error => {
@@ -157,7 +157,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(action(() => this.getAll()));
   }
@@ -170,7 +170,7 @@ class carStore {
       })
       .then(
         action(data => {
-          toastStore.success(data.message)
+          toastStore.success(data.message);
         })
       )
       .catch(error => {
@@ -178,7 +178,7 @@ class carStore {
           error.response !== undefined
             ? error.response.data.message
             : error.message;
-        toastStore.error(body)
+        toastStore.error(body);
       })
       .finally(
         action(() => {
@@ -194,7 +194,7 @@ carStore = decorate(carStore, {
   car: observable,
   cars: observable,
   loading: observable,
-  message: observable,
+  message: observable
 });
 
 export default new carStore();
