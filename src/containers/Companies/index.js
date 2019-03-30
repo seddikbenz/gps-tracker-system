@@ -1,33 +1,35 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
+import {View} from "react-native-web";
 
-import Links from "../../components/Links";
-import Container from "../../components/Container";
 
 import All from "./All";
 import Add from "./Add";
 import Edit from "./Edit";
 
-const links = [
-  {
-    name: "Tous les enterprises",
-    url: "/companies",
-    show: true
-  },
-  {
-    name: "Ajouter une enterprise",
-    url: "/companies/add",
-    show: true
-  }
-];
+import Container from "../../components/Container";
+import Link from "../../components/Link";
 
-const Companies = () => (
+import {globalStyles} from "../../constants";
+
+const Companies = withRouter(({history, location}) => (
   <Container title="Gestion des enterprises">
-    <Links links={links} />
+    <View style={globalStyles.links}>
+      <Link
+        text="Tous les enterprise"
+        onPress={()=>history.push("/companies")}
+        isSelected={location.pathname === "/companies"}
+      />
+      <Link
+        text="Ajouter une enterprise"
+        onPress={()=>history.push("/companies/add")}
+        isSelected={location.pathname === "/companies/add"}
+      />
+    </View>
     <Route path="/companies" component={All} exact />
     <Route path="/companies/add" component={Add} exact />
     <Route path="/companies/edit/:id" component={Edit} />
   </Container>
-);
+));
 
 export default Companies;

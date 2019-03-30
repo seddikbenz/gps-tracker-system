@@ -53,5 +53,13 @@ export const globalStyles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 5
-  }
+  },
+  links: {
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    backgroundColor: colors.gray,
+    paddingHorizontal: 10,
+    paddingVertical: 5
+  },
 });

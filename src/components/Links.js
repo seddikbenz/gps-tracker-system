@@ -5,6 +5,29 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native-web";
 
 import { colors } from "../constants";
 
+export const Link = ({onPress, isSelected, text}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.link,
+      {
+        borderColor:
+          isSelected
+            ? colors.orange
+            : colors.lightGray
+      }
+    ]}
+  >
+    <Text
+      style={{
+        fontWeight: isSelected ? "bold" : ""
+      }}
+    >
+      {text}
+    </Text>
+  </TouchableOpacity>
+)
+
 const Links = withRouter(({ history, location, links }) => {
   if (links.lenght === 0) {
     return <></>;

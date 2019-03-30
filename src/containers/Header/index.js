@@ -25,7 +25,7 @@ import {colors} from '../../constants'
 import HandleClickOutside from '../../components/HandleClickOutside'
 
 const MenuProfile = withRouter(({history}) => (
-  <HandleClickOutside handleClick={() => store.commonStore.showMenuProfile = !store.commonStore.showMenuProfile}>
+  <HandleClickOutside handleClick={() => store.commonStore.showMenuProfile = false}>
     <View style={styles.menuProfile}>
       <View style={{
         flexDirection: 'row',
@@ -65,7 +65,7 @@ const MenuProfile = withRouter(({history}) => (
 ))
 
 const Menu = withRouter(({history, location}) =>  (
-  <HandleClickOutside handleClick={() => store.commonStore.showMenu = !store.commonStore.showMenu}>
+  <HandleClickOutside handleClick={() => store.commonStore.showMenu = false}>
     <View style={styles.menu} >
       <TouchableOpacity
         onPress={()=>history.push('/')}
@@ -105,12 +105,15 @@ const Menu = withRouter(({history, location}) =>  (
         </TouchableOpacity>
       }
 
-      <TouchableOpacity
-        onPress={()=>history.push('/users')}
-        style={[styles.menuItem, {borderColor: location.pathname.includes('users') ? colors.orange: colors.lightGray}]} >
-        <FaUserAlt size={32} />
-        <Text style={{fontWeight: location.pathname.includes('users') ? 'bold': ''}}>Utilisateurs</Text>
-      </TouchableOpacity>
+      {
+        store.userStore.currentUser.role !== "user" &&
+        <TouchableOpacity
+          onPress={()=>history.push('/users')}
+          style={[styles.menuItem, {borderColor: location.pathname.includes('users') ? colors.orange: colors.lightGray}]} >
+          <FaUserAlt size={32} />
+          <Text style={{fontWeight: location.pathname.includes('users') ? 'bold': ''}}>Utilisateurs</Text>
+        </TouchableOpacity>
+      }
 
       <TouchableOpacity
         onPress={()=>history.push('/cars')}
@@ -141,10 +144,10 @@ const Menu = withRouter(({history, location}) =>  (
 
 class Header extends React.Component{
   toggleMenu(){
-    store.commonStore.showMenu = !store.commonStore.showMenu
+    store.commonStore.showMenu = true
   }
   toggleMenuProfile(){
-    store.commonStore.showMenuProfile = !store.commonStore.showMenuProfile
+    store.commonStore.showMenuProfile = true
   }
   render(){
     return(

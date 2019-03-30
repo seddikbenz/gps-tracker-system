@@ -6,6 +6,12 @@ import { colors } from "../constants";
 
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
+export const Button = ({onPress, children})=>(
+  <TouchableOpacity onPress={onPress} style={styles.button}>
+    {children}
+  </TouchableOpacity>
+)
+
 const Card = ({ children, onPress, onEdit, onDelete, isSelected }) => (
   <TouchableOpacity
     onPress={onPress}
@@ -18,15 +24,17 @@ const Card = ({ children, onPress, onEdit, onDelete, isSelected }) => (
   >
     <View style={styles.body}>{children}</View>
     <View style={styles.buttons}>
-      <TouchableOpacity onPress={onEdit} style={styles.button}>
+      <Button onPress={onEdit} >
         <FaPencilAlt size={16} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onDelete} style={styles.button}>
+      </Button>
+      <Button onPress={onDelete}>
         <FaTrashAlt color={colors.red} size={16} />
-      </TouchableOpacity>
+      </Button>
     </View>
   </TouchableOpacity>
 );
+
+
 
 const styles = StyleSheet.create({
   card: {

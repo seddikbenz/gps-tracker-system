@@ -1,63 +1,33 @@
 import React from "react";
 import {observer} from "mobx-react";
 import {Route, withRouter} from "react-router-dom";
-
-import Links from "../../components/Links";
-import Container from "../../components/Container";
+import {StyleSheet, View} from "react-native-web";
 
 import All from "./All";
 import Add from "./Add";
 import Edit from "./Edit";
 
+import Link from "../../components/Link";
+import Container from "../../components/Container";
+import {colors, globalStyles} from "../../constants";
+
 import store from '../../stores'
-import {colors} from "../../constants";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native-web";
 
 const Cars = withRouter(({history, location}) => (
   <Container title="Gestion des vehicules">
-    <View style={styles.links}>
-      <TouchableOpacity
-        onPress={() => history.push("/cars")}
-        style={[
-          styles.link,
-          {
-            borderColor:
-              location.pathname === "/cars"
-                ? colors.orange
-                : colors.lightGray
-          }
-        ]}
-      >
-        <Text
-          style={{
-            fontWeight: location.pathname === "/cars" ? "bold" : ""
-          }}
-        >
-          Tous les vehicules
-        </Text>
-      </TouchableOpacity>
+    <View style={globalStyles.links}>
+      <Link
+        text="Tous les vehicules"
+        onPress={()=>history.push("/cars")}
+        isSelected={location.pathname === "/cars"}
+      />
       {
         store.userStore.currentUser.role === "superadmin" &&
-        <TouchableOpacity
+        <Link
+          text="Ajouter une vehicule"
           onPress={() => history.push("/cars/add")}
-          style={[
-            styles.link,
-            {
-              borderColor:
-                location.pathname === "/cars/add"
-                  ? colors.orange
-                  : colors.lightGray
-            }
-          ]}
-        >
-          <Text
-            style={{
-              fontWeight: location.pathname === "/cars/add" ? "bold" : ""
-            }}
-          >
-            Ajouter une vehicules
-          </Text>
-        </TouchableOpacity>
+          isSelected={location.pathname === "/cars/add"}
+        />
       }
     </View>
     <Route path="/cars" component={All} exact/>
