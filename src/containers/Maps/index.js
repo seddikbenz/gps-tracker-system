@@ -110,14 +110,14 @@ class Maps extends React.Component {
                   icon={this.renderIconMarker(car)}
                 >
                   <Popup>
-                    <b>Numberplate:</b> {car.numberplate}
+                    <b>Matricule:</b> {car.numberplate}
                     <br /> <b>Code:</b> {car.code}
-                    <br /> <b>speed:</b> {car.speed ? car.speed : 0} km/h
+                    <br /> <b>Vitesse:</b> {car.speed ? car.speed : 0} km/h
                     <b>, State:</b> {car.state ? car.state : "off"}
                     <br /> <b>Lat:</b> {car.positions[0].lat}
                     <br /> <b>Lng:</b> {car.positions[0].lng}
-                    <br /> <b>created_at:</b> {car.positions[0].created_at}
-                    <br /> <b>updated_at:</b> {car.positions[0].updated_at}
+                    <br /> <b>Dernière mise à jour:</b>{" "}
+                    {car.positions[0].updated_at}
                   </Popup>
                 </Marker>
               );

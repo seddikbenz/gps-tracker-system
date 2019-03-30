@@ -18,6 +18,11 @@ const links = [
     name: "Ajouter un utilisateur",
     url: "/users/add",
     show: true
+  },
+  {
+    name: "Attacher des voitures",
+    url: "/users/attach",
+    show: true
   }
 ];
 
