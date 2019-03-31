@@ -12,7 +12,47 @@ class carStore {
     gps_code: "",
     company_id: ""
   };
-  cars = [];
+  cars = [
+    {
+      id: 1,
+      numberplate: "0001-00-16",
+      code: "",
+      gps_code: "",
+      company_id: "",
+      positions: [
+        {
+          lat: 36.16,
+          lng: 4.84
+        }
+      ]
+    },
+    {
+      id: 2,
+      numberplate: "0002-00-16",
+      code: "",
+      gps_code: "",
+      company_id: "",
+      positions: [
+        {
+          lat: 36.06,
+          lng: 4.94
+        }
+      ]
+    },
+    {
+      id: 3,
+      numberplate: "0001-00-16",
+      code: "",
+      gps_code: "",
+      company_id: "",
+      positions: [
+        {
+          lat: 36.06,
+          lng: 4.84
+        }
+      ]
+    }
+  ];
   loading = false;
   message = {
     type: "",

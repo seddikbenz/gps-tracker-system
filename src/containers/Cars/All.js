@@ -6,23 +6,24 @@ import {
   Text,
   TextInput,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from "react-native-web";
 
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 import store from "../../stores";
 
-import { globalStyles } from "../../constants";
-import Card from "../../components/Card";
+import { globalStyles, colors } from "../../constants";
+import { Button } from "../../components/Card";
 
 class All extends React.Component {
   componentDidMount() {
-    store.carStore.getAll()
+    store.carStore.getAll();
   }
   delete(id) {
-    if (window.confirm('Do you delete this car')) {
-      store.carStore.delete(id)
+    if (window.confirm("Do you delete this car")) {
+      store.carStore.delete(id);
     }
   }
   render() {
@@ -31,7 +32,7 @@ class All extends React.Component {
         <View style={[globalStyles.container, { justifyContent: "center" }]}>
           <ActivityIndicator size={48} />
         </View>
-      )
+      );
     }
 
     if (store.carStore.cars.length === 0) {
@@ -52,21 +53,33 @@ class All extends React.Component {
 
         <ScrollView>
           <View style={globalStyles.cards}>
-            {
-              store.carStore.cars.map((car, index) => (
-                <Card
-                  key={index}
-                  isSelected={store.carStore.selectedId === car.id}
-                  onDelete={() => this.delete(car.id)}
-                  onEdit={() => this.props.history.push("/cars/edit/" + car.id)}
-                  onPress={() => {
-                    store.carStore.selectedId = car.id;
-                  }}
-                >
+            {store.carStore.cars.map((car, index) => (
+              <TouchableOpacity
+                onPress={() => (store.carStore.selectedId = car.id)}
+                key={index}
+                style={[
+                  globalStyles.card,
+                  {
+                    borderColor:
+                      store.carStore.selectedId === car.id
+                        ? colors.orange
+                        : colors.lightGray
+                  }
+                ]}
+              >
+                <View style={globalStyles.bodyCard}>
                   <Text>{car.numberplate}</Text>
-                </Card>
-              ))
-            }
+                </View>
+                <View style={globalStyles.buttonsCard}>
+                  <Button>
+                    <FaPencilAlt size={16} />
+                  </Button>
+                  <Button>
+                    <FaTrashAlt color={colors.red} size={16} />
+                  </Button>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
         </ScrollView>
       </View>
